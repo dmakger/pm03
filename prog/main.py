@@ -4,14 +4,14 @@ from app import App
 
 def main():
     # Коэффициенты
-    a = 5
-    b = 3
+    input_str = open('input.txt').read()
+    a, b, step = list(map(float, input_str.split()))
     # Функция
     func = lambda x: a * math.sin(x) + b
 
     # Отрисовка
     app = App(func)
-    app.create_canvas()
+    app.create_canvas(step)
     app.draw()
 
 

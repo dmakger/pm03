@@ -17,13 +17,16 @@ class App:
 
         self.canvas = None
 
-    def create_canvas(self):
+    def create_canvas(self, step=None):
         """Создание canvas'a. В ней отрисовывается функция"""
+        if step is None:
+            step = self.STEP
+
         self.canvas = Canvas(self.root, width=self.WIDTH, height=self.HEIGHT, bg=self.BG)
         self.canvas.pack()
         # Отрисовка точек
         points = self.get_points(self.func)
-        self.rendering_points(points)
+        self.rendering_points(points, step)
 
     def set_guide_lines(self):
         """Создание направляющих (x, y) линий"""
@@ -47,8 +50,10 @@ class App:
                 points.append((x, None))
         return points
 
-    def rendering_points(self, points):
+    def rendering_points(self, points, step=None):
         """Вернет отрисует points"""
+        if step is None:
+            step = self.STEP
         last_point = points[0]
         for point in points[1:]:
             x1, y1 = last_point
@@ -63,8 +68,8 @@ class App:
                     y2 = 0
 
             self.canvas.create_line(
-                x1 * self.STEP + self.WIDTH // 2, -y1 * self.STEP + self.HEIGHT // 2,
-                x2 * self.STEP + self.WIDTH // 2, -y2 * self.STEP + self.HEIGHT // 2,
+                x1 * step + self.WIDTH // 2, -y1 * step + self.HEIGHT // 2,
+                x2 * step + self.WIDTH // 2, -y2 * step + self.HEIGHT // 2,
                 fill=color
             )
             last_point = point
