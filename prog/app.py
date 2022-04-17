@@ -24,12 +24,14 @@ class App:
 
         self.canvas = Canvas(self.root, width=self.WIDTH, height=self.HEIGHT, bg=self.BG)
         self.canvas.pack()
+        self.set_guide_lines()
         # Отрисовка точек
         points = self.get_points(self.func)
         self.rendering_points(points, step)
 
     def set_guide_lines(self):
         """Создание направляющих (x, y) линий"""
+        # создание направляющих x y линий
         self.canvas.create_line(0, self.HEIGHT // 2, self.WIDTH, self.HEIGHT // 2, fill='red',
                                 width=1, arrow=LAST, dash=(1, 1),
                                 activefill='red4',
@@ -46,7 +48,7 @@ class App:
         for x in range(-100, 100):
             try:
                 points.append((x, func(x)))
-            except ZeroDivisionError as ex:
+            except Exception as ex:
                 points.append((x, None))
         return points
 
