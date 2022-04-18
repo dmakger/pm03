@@ -11,7 +11,7 @@ def main():
 
     # Отрисовка
     app = App(func)
-    app.create_canvas(step)
+    # app.create_canvas(step)
     app.draw()
 
 
