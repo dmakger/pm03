@@ -1,5 +1,6 @@
 import math
 import tkinter.filedialog as fd
+import tkinter.messagebox as mb
 from tkinter import *
 
 
@@ -13,9 +14,9 @@ class App:
     # Шаг
     STEP = 20
 
-    def __init__(self, func):
+    def __init__(self):
         self.root = Tk()
-        self.func = func
+        self.func = None
 
         self.filename = None
         self.step = self.STEP
@@ -53,7 +54,11 @@ class App:
         # Коэффициенты
         input_str = open(self.filename).read()
         print(input_str)
-        a, b, self.step = list(map(float, input_str.split()))
+        try:
+            a, b, self.step = list(map(float, input_str.split()))
+        except Exception:
+            mb.showerror("Ошибка типа данных", "Текстовый файл содержит некорректный тип данных")
+
         # Функция
         self.func = lambda x: a * math.sin(x) + b
 
