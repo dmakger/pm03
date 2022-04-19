@@ -27,3 +27,10 @@ class FileManager:
         """Парсит данные из файла"""
         input_str = open(self.filename).read()
         self.result = input_str.split()
+
+    def write_file(self, text=None):
+        """Записывет данные в файл"""
+        if text is None:
+            text = self.result
+        with open(self.filename, 'a') as file:
+            file.write(str(text) + "\n")
