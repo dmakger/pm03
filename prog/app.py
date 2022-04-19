@@ -48,6 +48,7 @@ class App:
         print(result)
         self.chek_result(result)
         if result['info'] == self.vector_manager.SUCCESS:
+            self.file_manager.choose_file()
             self.file_manager.write_file(result['value'])
 
     def clear(self):

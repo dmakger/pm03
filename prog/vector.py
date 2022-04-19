@@ -21,11 +21,22 @@ class VectorManager:
         }
         if len(self.vectors) == 0:
             result['info'] = self.EMPTY_ERROR
-        try:
-            result['value'] = sum(np.asarray(self.vectors, dtype=float))
-        except Exception:
-            result['info'] = self.VECTOR_ERROR
+        # try:
+        sum_value = sum(np.asarray(self.vectors, dtype=float))
+        result['value'] = " ".join(self.to_string(sum_value))
+        # except Exception:
+        #     result['info'] = self.VECTOR_ERROR
 
+        return result
+
+    def to_string(self, vector):
+        result = list()
+        for value in vector.tolist():
+            value_int = int(value)
+            if value == value_int:
+                result.append(str(value_int))
+            else:
+                result.append(str(value))
         return result
 
     def clear(self):

@@ -32,5 +32,6 @@ class FileManager:
         """Записывет данные в файл"""
         if text is None:
             text = self.result
-        with open(self.filename, 'a') as file:
-            file.write(str(text) + "\n")
+        with open(self.filename, 'w') as file:
+            file.write(str(text))
+            file.close()
